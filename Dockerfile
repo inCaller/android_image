@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 
 ADD version /opt/version
+ADD sdk.exp /op/sdk.exp
 
 RUN \
 apt-get update  && \
@@ -21,19 +22,4 @@ rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/*
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 RUN \
-expect -c ' \
-  set timeout 300; \
-  set done 0; \
-  spawn android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-24.0.3,android-24,android-19,extra,sys-img-armeabi-v7a-android-19; \
-  while {$done == 0} { \
-    expect { \
-      expect "\#*" { \
-        set done 1; \
-      } \
-      expect "Do you accept*\[y/n\]*" { \
-        sleep 1; \
-        send "y\r"; \
-      } \
-    } \
-  } \
-'
+expect /opt/sdk.exp
