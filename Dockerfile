@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 ADD version /opt/version
-ADD sdk.exp /op/sdk.exp
+ADD sdk.exp /opt/sdk.exp
 
 RUN \
 apt-get update  && \
@@ -21,5 +21,6 @@ apt-get install -y libgl1-mesa-dev && \
 rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/*
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+ENV TERM xterm-256color
 RUN \
 expect /opt/sdk.exp
