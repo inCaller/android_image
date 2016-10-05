@@ -14,10 +14,12 @@ wget http://dl.google.com/android/android-sdk_r$(cat version)-linux.tgz  && \
 tar -xvf android-sdk*-linux.tgz  && \
 echo 'export ANDROID_HOME=/opt/android-sdk-linux' >> /etc/profile.d/android.sh  && \
 echo 'export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' >> /etc/profile.d/android.sh  && \
-source /etc/profile.d/android.sh  && \
 apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6  && \
 apt-get install -y git expect && \
-rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/* && \
+rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/*
+ENV ANDROID_HOME /opt/android-sdk-linux
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+RUN \
 expect -c ' \
   set timeout 300; \
   set done 0; \
