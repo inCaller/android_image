@@ -17,4 +17,20 @@ echo 'export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' >> /
 source /etc/profile.d/android.sh  && \
 apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6  && \
 apt-get install -y git expect && \
-rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/* 
+rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/* && \
+expect -c ' \
+  set timeout 300; \
+  set done 0; \
+  spawn android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-24.0.3,android-24,android-19,extra,sys-img-armeabi-v7a-android-19; \
+  while {$done == 0} { \
+    expect { \
+      expect "\#*" { \
+        set done 1; \
+      } \
+      expect "Do you accept*\[y/n\]*" { \
+        sleep 1; \
+        send "y\r"; \
+      } \
+    } \
+  } \
+'
