@@ -9,7 +9,7 @@ add-apt-repository -y ppa:webupd8team/java  && \
 apt-get update  && \
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections  && \
 apt-get install -y oracle-java8-installer oracle-java8-set-default  && \
-pushd /opt  && \
+cd /opt  && \
 wget http://dl.google.com/android/android-sdk_r$(cat version)-linux.tgz  && \
 tar -xvf android-sdk*-linux.tgz  && \
 echo 'export ANDROID_HOME=/opt/android-sdk-linux' >> /etc/profile.d/android.sh  && \
