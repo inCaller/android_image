@@ -23,5 +23,5 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 ENV TERM xterm-256color
 RUN \
-echo y|spawn -ignore HUP android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-24.0.3,android-24,android-19,extra,sys-img-armeabi-v7a-android-19
+echo y|android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-24.0.3,android-24,android-19,extra,sys-img-armeabi-v7a-android-19
 # expect /opt/sdk.exp
