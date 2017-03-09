@@ -20,4 +20,4 @@ apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6  && \
 apt-get install -y git expect && \
 apt-get install -y libgl1-mesa-dev && \
 rm -v android-sdk*-linux.tgz && rm -rf /var/lib/apt/lists/* && \
-echo y|android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-25.0.2,android-24,android-19,extra,sys-img-armeabi-v7a-android-19
+echo y|android update sdk --no-ui --all --filter platform-tools,extra-android-support,tools,build-tools-25.0.2,android-24,android-25,android-19,extra,sys-img-armeabi-v7a-android-19
